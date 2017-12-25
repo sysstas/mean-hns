@@ -12,6 +12,12 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
       </li>
+<!--       <li class="nav-item">
+        <a class="nav-link" href="#">{{currentUser | json}}</a>
+      </li> -->
+      <li *ngIf="currentUser.isAdmin" class="nav-item">
+        <a class="nav-link" href="#">Admin panel</a>
+      </li>
       
 
     </ul>
@@ -32,27 +38,27 @@
 <!-- main contents -->
 <div class="row">
     <div class="col-md-6">
-    <h1>Hi {{currentUser.firstName}}!</h1>
-    <p>You're logged in with the MEAN Stack & Angular 2!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.username}} ({{user.firstName}} {{user.lastName}})
-            - <a (click)="deleteUser(user._id)">Delete</a>
-        </li>
-    </ul>
-    <p><a [routerLink]="['/login']">Logout</a></p>
+      <h1>Hi {{currentUser.firstName}}!</h1>
+      <p>You're logged in with the MEAN Stack & Angular 2!!</p>
+      <h3>All registered users:</h3>
+      <ul>
+          <li *ngFor="let user of users">
+              {{user.username}} ({{user.firstName}} {{user.lastName}})
+              <a *ngIf="currentUser.isAdmin" (click)="deleteUser(user._id)">- Delete</a>
+          </li>
+      </ul>
+      <p><a [routerLink]="['/login']">Logout</a></p>
     </div>
-        <div class="col-md-6">
-    <h1>Hi {{currentUser.firstName}}!</h1>
-    <p>You're logged in with the MEAN Stack & Angular 2!!</p>
-    <h3>All registered users:</h3>
-    <ul>
-        <li *ngFor="let user of users">
-            {{user.username}} ({{user.firstName}} {{user.lastName}})
-            - <a (click)="deleteUser(user._id)">Delete</a>
-        </li>
-    </ul>
-    <p><a [routerLink]="['/login']">Logout</a></p>
+    <div class="col-md-6">
+      <h1>Hi {{currentUser.firstName}}!</h1>
+      <p>You're logged in with the MEAN Stack & Angular 2!!</p>
+      <h3>All registered users:</h3>
+      <ul>
+          <li *ngFor="let user of users">
+              {{user | json}}
+              - <a (click)="deleteUser(user._id)">Delete</a>
+          </li>
+      </ul>
+      <p><a [routerLink]="['/login']">Logout</a></p>
     </div>
 </div>

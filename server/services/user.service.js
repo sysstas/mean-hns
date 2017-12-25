@@ -33,7 +33,8 @@ function authenticate(username, password) {
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                token: jwt.sign({ sub: user._id }, config.secret)
+                token: jwt.sign({ sub: user._id }, config.secret),
+                isAdmin: user.isAdmin
             });
         } else {
             // authentication failed
