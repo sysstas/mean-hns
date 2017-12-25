@@ -18,6 +18,8 @@ service.delete = _delete;
 
 module.exports = service;
 
+startupAdminCreate();
+
 function authenticate(username, password) {
     var deferred = Q.defer();
 
@@ -175,6 +177,47 @@ function _delete(_id) {
 
             deferred.resolve();
         });
+
+    return deferred.promise;
+}
+
+// Initial admin creation
+function startupAdminCreate(userParam) {
+    var deferred = Q.defer();
+    var userParam = {
+        username : "admin",
+        isAdmin : true
+    };
+
+    // validation
+    db.users.findOne(
+        { username: userParam.username },
+        function (err, user) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            if (user) {
+                // username already exists
+                deferred.reject('Username "' + userParam.username + '" is already taken');
+            } else {
+                createUser();
+            }
+        });
+
+    function createUser() {
+        // set user object to userParam without the cleartext password
+        var user = _.omit(userParam, 'password');
+
+        // add hashed password to user object
+        user.hash = bcrypt.hashSync('admin', 10);
+
+        db.users.insert(
+            user,
+            function (err, doc) {
+                if (err) deferred.reject(err.name + ': ' + err.message);
+
+                deferred.resolve();
+            });
+    }
 
     return deferred.promise;
 }
