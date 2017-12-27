@@ -1,5 +1,4 @@
-﻿<!-- navigation -->
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Hi {{currentUser.firstName}}!</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -13,7 +12,7 @@
         <a class="nav-link" href="#">Link</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{currentUser | json}}</a>
+        <a class="nav-link" href="#">{{currentUser.firstName}}</a>
       </li>
       <li *ngIf="currentUser.isAdmin" class="nav-item">
         <a class="nav-link" href="#">Admin panel</a>
@@ -34,32 +33,4 @@
       </li>
     </ul>
   </div>
-</nav> -->
-<navigation></navigation>
-<!-- main contents -->
-<div class="row">
-    <div class="col-md-6">
-      <h1>Hi {{currentUser.firstName}}!</h1>
-      <p>You're logged in with the MEAN Stack & Angular 2!!</p>
-      <h3>All registered users:</h3>
-      <ul>
-          <li *ngFor="let user of users">
-              {{user.username}} ({{user.firstName}} {{user.lastName}})
-              <a *ngIf="currentUser.isAdmin" (click)="deleteUser(user._id)">- Delete</a>
-          </li>
-      </ul>
-      <p><a [routerLink]="['/login']">Logout</a></p>
-    </div>
-    <div class="col-md-6">
-      <h1>Hi {{currentUser.firstName}}!</h1>
-      <p>You're logged in with the MEAN Stack & Angular 2!!</p>
-      <h3>All registered users:</h3>
-      <ul>
-          <li *ngFor="let user of users">
-              {{user | json}}
-              - <a (click)="deleteUser(user._id)">Delete</a>
-          </li>
-      </ul>
-      <p><a [routerLink]="['/login']">Logout</a></p>
-    </div>
-</div>
+</nav>
