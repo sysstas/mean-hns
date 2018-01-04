@@ -13,7 +13,9 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
-import { NavigationComponent } from './navigation/navigation.component'
+import { NavigationComponent } from './navigation/navigation.component';
+import { AdminComponent } from './admin/admin.component';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { NavigationComponent } from './navigation/navigation.component'
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        NavigationComponent
+        NavigationComponent,
+        AdminComponent
     ],
     providers: [
         customHttpProvider,
